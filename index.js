@@ -5,6 +5,7 @@ const { Chalk } = require("chalk");
 
 const program = new Command();
 const chalk = new Chalk();
+
 program
   .command("start")
   .option("--port <number>", "port number")

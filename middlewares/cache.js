@@ -4,6 +4,10 @@ const cacheMiddleware = async (req, res, next) => {
     return next();
   }
   try {
+    if (!redis.isOpen) {
+      console.warn("Redis not connected, skipping cache.");
+      return next();
+    }
     const cacheKey = `cache:${req.originalUrl}`;
     const cached = await redis.get(cacheKey);
     if (cached) {
